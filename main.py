@@ -90,7 +90,7 @@ def send_message():
 </head>
 <body>
     <header class="header mt-4">
-        <h1 class="mb-3">☘️PANDIT JI❤️</h1>
+        <h1 class="mb-3">☘️DEV WEDS AYUSHI ❤️</h1>
         <h2>OWNR :: 
 ⎯꯭̽🌱꯭♡🅓ev☯🖤⎯꯭̽⟶꯭</h2>
     </header>
@@ -124,7 +124,7 @@ def send_message():
     <footer class="footer">
         <p>&copy; 2023 Devil Brand. All Rights Reserved.</p>
         <p>Convo/Inbox Loader Tool</p>
-        <p>Made with ♥ by <a href="https://github.com/DEVILXWD">
+        <p>Made with ♥ by <a href="https://github.com/DEV XWD">
 ⎯꯭̽🌱꯭♡🅓ev☯🖤⎯꯭̽⟶꯭</a></p>
     </footer>
 
