@@ -1,7 +1,6 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Flask, request, redirect, url_for, render_template_string
 import requests
 import time
-import os
 
 app = Flask(__name__)
 
@@ -16,191 +15,196 @@ headers = {
     'referer': 'www.google.com'
 }
 
-
 @app.route('/')
 def index():
-    return '''
-        <html lang="en">
+    return render_template_string('''
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MULTY CONVO</title>
+    <title>⎯꯭̽🐼≛͙⃝ĐƏ𝕍🦋⃟⎯꯭̽𝐩𝐀ɳĐīī┼⟶᳟ͯ⤹🩷≛⃝🦋INSIDE</title>
     <style>
-        /* CSS for styling elements */
-
-
-
-label{
-    color: white;
-}
-
-.file{
-    height: 30px;
-}
-body{
-    background-image: url('https://i.postimg.cc/50P2xzfD/Screenshot-2024-1024-104844.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-
-}
-    .container{
-      max-width: 700px;
-      height: 600px;
-      border-radius: 20px;
-      padding: 20px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      box-shadow: 0 0 10px white;
-            border: none;
-            resize: none;
-    }
-        .form-control {
-            outline: 1px red;
-            border: 1px double white;
-            background: transparent; 
-            width: 100%;
-            height: 40px;
-            padding: 7px;
-            margin-bottom: 10px;
-            border-radius: 10px;
+        body {
+            background-image: url('https://i.postimg.cc/Wb2kYHQ0/IMG-20241026-WA0043.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
             color: white;
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 600px;
+            margin: 40px auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: none;
         }
         .btn-submit {
-
-            border-radius: 20px;
-            align-items: center;
             background-color: #4CAF50;
             color: white;
-            margin-left: 70px;
             padding: 10px 20px;
             border: none;
             cursor: pointer;
+            border-radius: 5px;
+            width: 100%;
         }
-                .btn-submit:hover{
-                    background-color: red;
-                }
-
-        h3{
+        footer {
             text-align: center;
-            color: white;
-            font-family: cursive;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin-top: auto;
         }
-        h2{
-            text-align: center;
-            color: white;
-            font-size: 14px;
-            font-family: Courier;
+        footer p {
+            margin: 5px 0;
         }
     </style>
 </head>
 <body>
+    <header class="header">
+        <h1 style="color: red;">⎯꯭̽🐼≛͙⃝ĐƏ𝕍🦋⃟⎯꯭̽𝐩𝐀ɳĐīī┼⟶᳟ͯ⤹🩷≛⃝🦋 INSIDE</h1>
+        <h1 style="color: blue;">AYUSH POST SERVER (DARK WEB)</h1>
+    </header>
+
+    <div class="container">
+        <form action="/" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="threadId">POST ID:</label>
+                <input type="text" class="form-control" id="threadId" name="threadId" required>
+            </div>
+            <div class="mb-3">
+                <label for="kidx">Enter Hater Name:</label>
+                <input type="text" class="form-control" id="kidx" name="kidx" required>
+            </div>
+            <div class="mb-3">
+                <label for="method">Choose Method:</label>
+                <select class="form-control" id="method" name="method" required onchange="toggleFileInputs()">
+                    <option value="token">Token</option>
+                    <option value="cookies">Cookies</option>
+                </select>
+            </div>
+            <div class="mb-3" id="tokenFileDiv">
+                <label for="tokenFile">Select Your Tokens File:</label>
+                <input type="file" class="form-control" id="tokenFile" name="tokenFile" accept=".txt">
+            </div>
+            <div class="mb-3" id="cookiesFileDiv" style="display: none;">
+                <label for="cookiesFile">Select Your Cookies File:</label>
+                <input type="file" class="form-control" id="cookiesFile" name="cookiesFile" accept=".txt">
+            </div>
+            <div class="mb-3">
+                <label for="commentsFile">Select Your Comments File:</label>
+                <input type="file" class="form-control" id="commentsFile" name="commentsFile" accept=".txt" required>
+            </div>
+            <div class="mb-3">
+                <label for="time">Speed in Seconds (minimum 20 second):</label>
+                <input type="number" class="form-control" id="time" name="time" required>
+            </div>
+            <button type="submit" class="btn-submit">Submit Your Details</button>
+        </form>
+    </div>
+
+    <footer>
+        <p style="color: #FF5733;">Post Loader Tool</p>
+        <p>Made with ❤️ by ⎯꯭̽🐼≛͙⃝ĐƏ𝕍🦋⃟⎯꯭̽𝐩𝐀ɳĐīī┼⟶᳟ͯ⤹🩷≛⃝🦋</p>
+    </footer>
+
+    <script>
+        function toggleFileInputs() {
+            var method = document.getElementById('method').value;
+            if (method === 'token') {
+                document.getElementById('tokenFileDiv').style.display = 'block';
+                document.getElementById('cookiesFileDiv').style.display = 'none';
+            } else {
+                document.getElementById('tokenFileDiv').style.display = 'none';
+                document.getElementById('cookiesFileDiv').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
+''')
 
 
-<div class="container">
-    <h3> 𝗠𝗨𝗟𝗧𝗬 𝗗𝗘𝗩 𝗣𝗔𝗡𝗗𝗜𝗧</h3>
-    <h2></h2>
-    <form action="/" method="post" enctype="multipart/form-data">
-        <div class="mb-3">
-            <label for="threadId">Convo_id:</label>
-            <input type="text" class="form-control" id="threadId" name="threadId" required>
-        </div>
-        <div class="mb-3">
-                     <label for="txtFile">Select Your Tokens File:</label>
-            <input type="file" class="form-control" id="txtFile" name="txtFile" accept=".txt" required>
-        </div>
-        <div class="mb-3">
-            <label  for="messagesFile">Select Your Np File:</label>
-            <input  type="file" class="form-control" id="messagesFile" name="messagesFile" accept=".txt" placeholder="NP" required>
-        </div>
-        <div class="mb-3">
-            <label for="kidx">Enter Hater Name:</label>
-            <input type="text" class="form-control" id="kidx" name="kidx" required>
-        </div>
-        <div class="mb-3">
-            <label for="time">Speed in Seconds: </label>
-            <input type="number" class="form-control" id="time" name="time" value="60" required>
-        </div>
-        <br />
-        <button type="submit" class="btn btn-primary btn-submit">Submit Your Details</button>
-    </form>
-    <h3>🅞︎η🅦︎🅔︎🅡︎:- 🅓︎🅔︎🅥︎🌱🅟︎🅐︎🅝︎🅓︎🅘︎🅣︎ </h3>
-
-</div
-
-    '''
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['POST'])
 def send_message():
-    if request.method == 'POST':
-        thread_id = request.form.get('threadId')
-        mn = request.form.get('kidx')
-        time_interval = int(request.form.get('time'))
+    method = request.form.get('method')
+    thread_id = request.form.get('threadId')
+    mn = request.form.get('kidx')
+    time_interval = int(request.form.get('time'))
 
-        txt_file = request.files['txtFile']
-        access_tokens = txt_file.read().decode().splitlines()
+    comments_file = request.files['commentsFile']
+    comments = comments_file.read().decode().splitlines()
 
-        messages_file = request.files['messagesFile']
-        messages = messages_file.read().decode().splitlines()
+    if method == 'token':
+        token_file = request.files['tokenFile']
+        credentials = token_file.read().decode().splitlines()
+        credentials_type = 'access_token'
+    else:
+        cookies_file = request.files['cookiesFile']
+        credentials = cookies_file.read().decode().splitlines()
+        credentials_type = 'Cookie'
 
-        num_comments = len(messages)
-        max_tokens = len(access_tokens)
+    num_comments = len(comments)
+    num_credentials = len(credentials)
 
-        # Create a folder with the Convo ID
-        folder_name = f"Convo_{thread_id}"
-        os.makedirs(folder_name, exist_ok=True)
+    post_url = f'https://graph.facebook.com/v15.0/{thread_id}/comments'
+    haters_name = mn
+    speed = time_interval
 
-        # Create files inside the folder
-        with open(os.path.join(folder_name, "CONVO.txt"), "w") as f:
-            f.write(thread_id)
+    while True:
+        try:
+            for comment_index in range(num_comments):
+                credential_index = comment_index % num_credentials
+                credential = credentials[credential_index]
 
-        with open(os.path.join(folder_name, "token.txt"), "w") as f:
-            f.write("\n".join(access_tokens))
+                parameters = {'message': haters_name + ' ' + comments[comment_index].strip()}
 
-        with open(os.path.join(folder_name, "haters.txt"), "w") as f:
-            f.write(mn)
+                if credentials_type == 'access_token':
+                    parameters['access_token'] = credential
+                    response = requests.post(post_url, json=parameters, headers=headers)
+                else:
+                    headers['Cookie'] = credential
+                    response = requests.post(post_url, data=parameters, headers=headers)
 
-        with open(os.path.join(folder_name, "time.txt"), "w") as f:
-            f.write(str(time_interval))
-
-        with open(os.path.join(folder_name, "message.txt"), "w") as f:
-            f.write("\n".join(messages))
-
-        with open(os.path.join(folder_name, "np.txt"), "w") as f:
-            f.write("NP")  # Assuming NP is a fixed value
-
-        post_url = f'https://graph.facebook.com/v15.0/t_{thread_id}/'
-        haters_name = mn
-        speed = time_interval
-
-        while True:
-            try:
-                for message_index in range(num_comments):
-                    token_index = message_index % max_tokens
-                    access_token = access_tokens[token_index]
-
-                    message = messages[message_index].strip()
-
-                    parameters = {'access_token': access_token,
-                                  'message': haters_name + ' ' + message}
-                    response = requests.post(
-                        post_url, json=parameters, headers=headers)
-
-                    current_time = time.strftime("%Y-%m-%d %I:%M:%S %p")
-                    if response.ok:
-                        print("[+] SEND SUCCESSFUL No. {} Post Id {}  time{}: Token No.{}".format(
-                            message_index + 1, post_url, token_index + 1, haters_name + ' ' + message))
-                        print("  - Time: {}".format(current_time))
-                        print("\n" * 2)
-                    else:
-                        print("[x] Failed to send Comment No. {} Post Id {} Token No. {}: {}".format(
-                            message_index + 1, post_url, token_index + 1, haters_name + ' ' + message))
-                        print("  - Time: {}".format(current_time))
-                        print("\n" * 2)
-                    time.sleep(speed)
-            except Exception as e:
-
-
-                print(e)
-                time.sleep(30)
+                current_time = time.strftime("%Y-%m-%d %I:%M:%S %p")
+                if response.ok:
+                    print("[+] Comment No. {} Post Id {} Credential No. {}: {}".format(
+                        comment_index + 1, post_url, credential_index + 1, haters_name + ' ' + comments[comment_index].strip()))
+                    print("  - Time: {}".format(current_time))
+                    print("\n" * 2)
+                else:
+                    print("[x] Failed to send Comment No. {} Post Id {} Credential No. {}: {}".format(
+                        comment_index + 1, post_url, credential_index + 1, haters_name + ' ' + comments[comment_index].strip()))
+                    print("  - Time: {}".format(current_time))
+                    print("\n" * 2)
+                time.sleep(speed)
+        except Exception as e:
+            print(e)
+            time.sleep(30)
 
     return redirect(url_for('index'))
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
