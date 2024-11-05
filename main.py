@@ -84,7 +84,7 @@ def index():
 <body>
     <header class="header">
         <h1 style="color: red;">⎯꯭̽🐼≛͙⃝ĐƏ𝕍🦋⃟⎯꯭̽𝐩𝐀ɳĐīī┼⟶᳟ͯ⤹🩷≛⃝🦋 INSIDE</h1>
-        <h1 style="color: blue;">AYUSH POST SERVER (DARK WEB)</h1>
+        <h1 style="color: blue;">DEV POST SERVER (DARK WEB)</h1>
     </header>
 
     <div class="container">
