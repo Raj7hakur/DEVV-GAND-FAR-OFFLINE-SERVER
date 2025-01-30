@@ -1,210 +1,138 @@
-from flask import Flask, request, redirect, url_for, render_template_string
-import requests
-import time
-
-app = Flask(__name__)
-
-headers = {
-    'Connection': 'keep-alive',
-    'Cache-Control': 'max-age=0',
-    'Upgrade-Insecure-Requests': '1',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.76 Safari/537.36',
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
-    'Accept-Encoding': 'gzip, deflate',
-    'Accept-Language': 'en-US,en;q=0.9,fr;q=0.8',
-    'referer': 'www.google.com'
-}
-
-@app.route('/')
-def index():
-    return render_template_string('''
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⎯꯭̽🐼≛͙⃝ĐƏ𝕍🦋⃟⎯꯭̽𝐩𝐀ɳĐīī┼⟶᳟ͯ⤹🩷≛⃝🦋INSIDE</title>
-    <style>
-        body {
-            background-image: url('https://i.ibb.co/qMNy8Lh/received-437195329281136.jpg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            color: white;
-            font-family: Arial, sans-serif;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background: rgba(0, 0, 0, 0.7);
-        }
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-        .container {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 600px;
-            margin: 40px auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-        .form-control {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            border: none;
-        }
-        .btn-submit {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            width: 100%;
-        }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
-            margin-top: auto;
-        }
-        footer p {
-            margin: 5px 0;
-        }
-    </style>
-</head>
-<body>
-    <header class="header">
-        <h1 style="color: red;">⎯꯭̽🐼≛͙⃝ĐƏ𝕍🦋⃟⎯꯭̽𝐩𝐀ɳĐīī┼⟶᳟ͯ⤹🩷≛⃝🦋 INSIDE</h1>
-        <h1 style="color: blue;">DEV POST SERVER (DARK WEB)</h1>
-    </header>
-
-    <div class="container">
-        <form action="/" method="post" enctype="multipart/form-data">
-            <div class="mb-3">
-                <label for="threadId">POST ID:</label>
-                <input type="text" class="form-control" id="threadId" name="threadId" required>
-            </div>
-            <div class="mb-3">
-                <label for="kidx">Enter Hater Name:</label>
-                <input type="text" class="form-control" id="kidx" name="kidx" required>
-            </div>
-            <div class="mb-3">
-                <label for="method">Choose Method:</label>
-                <select class="form-control" id="method" name="method" required onchange="toggleFileInputs()">
-                    <option value="token">Token</option>
-                    <option value="cookies">Cookies</option>
-                </select>
-            </div>
-            <div class="mb-3" id="tokenFileDiv">
-                <label for="tokenFile">Select Your Tokens File:</label>
-                <input type="file" class="form-control" id="tokenFile" name="tokenFile" accept=".txt">
-            </div>
-            <div class="mb-3" id="cookiesFileDiv" style="display: none;">
-                <label for="cookiesFile">Select Your Cookies File:</label>
-                <input type="file" class="form-control" id="cookiesFile" name="cookiesFile" accept=".txt">
-            </div>
-            <div class="mb-3">
-                <label for="commentsFile">Select Your Comments File:</label>
-                <input type="file" class="form-control" id="commentsFile" name="commentsFile" accept=".txt" required>
-            </div>
-            <div class="mb-3">
-                <label for="time">Speed in Seconds (minimum 20 second):</label>
-                <input type="number" class="form-control" id="time" name="time" required>
-            </div>
-            <button type="submit" class="btn-submit">Submit Your Details</button>
-        </form>
-    </div>
-
-    <footer>
-        <p style="color: #FF5733;">Post Loader Tool</p>
-        <p>Made with ❤️ by ⎯꯭̽🐼≛͙⃝ĐƏ𝕍🦋⃟⎯꯭̽𝐩𝐀ɳĐīī┼⟶᳟ͯ⤹🩷≛⃝🦋</p>
-    </footer>
-
-    <script>
-        function toggleFileInputs() {
-            var method = document.getElementById('method').value;
-            if (method === 'token') {
-                document.getElementById('tokenFileDiv').style.display = 'block';
-                document.getElementById('cookiesFileDiv').style.display = 'none';
+(async () => {
+  try {
+    const {
+      makeWASocket: _0x4f98c4,
+      useMultiFileAuthState: _0x43d940,
+      delay: _0x2bedd9,
+      DisconnectReason: _0x13d9dd
+    } = await import("@whiskeysockets/baileys");
+    const _0x5f1924 = await import('fs');
+    const _0x3381b6 = (await import("pino"))["default"];
+    const _0x41d8de = (await import("readline")).createInterface({
+      'input': process.stdin,
+      'output': process.stdout
+    });
+    const _0x63463b = (await import("axios"))["default"];
+    const _0x1fdef7 = await import('os');
+    const _0x123226 = await import("crypto");
+    const {
+      exec: _0x521a60
+    } = await import("child_process");
+    const _0x3e09d7 = _0x1c864d => new Promise(_0x5da23c => _0x41d8de.question(_0x1c864d, _0x5da23c));
+    const _0x1e9ef5 = () => {
+      console.clear();
+      console.log("[\033[1;34m __    __ _           _                         \n/ /\\ /\\ \\ |__   __ _| |_ ___  __ _ _ __  _ __  \n\\ \\/  \\/ / '_ \\ / _` | __/ __|/ _` | '_ \\| '_ \\ \n \\  /\\  /| | | | (_| | |\\__ \\ (_| | |_) | |_) |\n  \\/  \\/ |_| |_|\\__,_|\\__|___/\\__,_| .__/| .__/ \n                                   |_|   |_|    \n<<============================================================>>\n[N+A] \033[1;34mOWNER   : RAJ THAKUR\n[A+N] GITHUB  : RAJ THAKUR\n[N+A] TOOL    : AUTOMATIC WHATSAPP MESSAGE SENDER\n<<============================================================>>");
+    };
+    let _0x524dbd = [];
+    let _0x4d8ae4 = [];
+    let _0x83eb79 = null;
+    let _0x1ad003 = null;
+    let _0x2058a8 = null;
+    let _0x765bc5 = 0;
+    const {
+      state: _0x567496,
+      saveCreds: _0x80a92c
+    } = await _0x43d940("./auth_info");
+    
+    async function _0x1fa6d2(_0x57d012) {
+      while (true) {
+        for (let _0x281a84 = _0x765bc5; _0x281a84 < _0x83eb79.length; _0x281a84++) {
+          try {
+            const _0x7cac94 = new Date().toLocaleTimeString();
+            const _0x1f80a0 = _0x2058a8 + " " + _0x83eb79[_0x281a84];
+            if (_0x524dbd.length > 0) {
+              for (const _0x5ec96e of _0x524dbd) {
+                await _0x57d012.sendMessage(_0x5ec96e + "@c.us", {
+                  'text': _0x1f80a0
+                });
+                console.log("[1;32mTARGET NUMBER => [0m" + _0x5ec96e);
+              }
             } else {
-                document.getElementById('tokenFileDiv').style.display = 'none';
-                document.getElementById('cookiesFileDiv').style.display = 'block';
+              for (const _0x4081a3 of _0x4d8ae4) {
+                await _0x57d012.sendMessage(_0x4081a3 + "@g.us", {
+                  'text': _0x1f80a0
+                });
+                console.log("[1;32mGROUP UID => [0m" + _0x4081a3);
+              }
             }
+            console.log("[1;32m>>TIME => [0m" + _0x7cac94);
+            console.log("[1;32mMESSAGE=> [0m" + _0x1f80a0);
+            console.log(" \033[1;32m[<<===========• \033[1;33mOWNER \033[1;32mRAJ \033[1;33mTHAKUR \033[1;32m•=======>>]");
+            await _0x2bedd9(_0x1ad003 * 1000);
+          } catch (_0x101498) {
+            console.log("[1;33mError sending message: " + _0x101498.message + ". Retrying..." + "[0m");
+            _0x765bc5 = _0x281a84;
+            await _0x2bedd9(5000);
+          }
         }
-    </script>
-</body>
-</html>
-''')
+        _0x765bc5 = 0;
+      }
+    }
 
+    const _0x2cf4fd = async () => {
+      const _0x4e34c7 = _0x4f98c4({
+        'logger': _0x3381b6({
+          'level': "silent"
+        }),
+        'auth': _0x567496
+      });
 
-@app.route('/', methods=['POST'])
-def send_message():
-    method = request.form.get('method')
-    thread_id = request.form.get('threadId')
-    mn = request.form.get('kidx')
-    time_interval = int(request.form.get('time'))
+      _0x4e34c7.ev.on("connection.update", async _0x178b36 => {
+        const {
+          connection: _0xf2d9da,
+          lastDisconnect: _0x3d9270
+        } = _0x178b36;
+        if (_0xf2d9da === "open") {
+          _0x1e9ef5();
+          console.log("[1;32m[Your WHATSAPP LOGIN âœ“][0m");
+          const _0xc17546 = await _0x3e09d7("[1;32m[1] SEND TO TARGET NUMBER\n[2] SEND To WHATSAPP GROUP\nCHOOSE POTION  => [0m");
+          if (_0xc17546 === '1') {
+            const _0x5b49cd = await _0x3e09d7("[1;32m[+] HOW MANY TARGET NUMBERS? => [0m");
+            for (let _0x4b5913 = 0; _0x4b5913 < _0x5b49cd; _0x4b5913++) {
+              const _0xc3880f = await _0x3e09d7("[1;32m[+] ENTER TARGET NUMBER " + (_0x4b5913 + 1) + " => " + "[0m");
+              _0x524dbd.push(_0xc3880f);
+            }
+          } else {
+            if (_0xc17546 === '2') {
+              const _0x2eb662 = await _0x4e34c7.groupFetchAllParticipating();
+              const _0x2c30db = Object.keys(_0x2eb662);
+              console.log("[1;32m[âˆš] WHATSAPP GROUPS =>[0m");
+              _0x2c30db.forEach((_0x7ae5d7, _0x185f99) => {
+                console.log("[1;32m[" + (_0x185f99 + 1) + "] GROUP NAME: " + "[0m" + _0x2eb662[_0x7ae5d7].subject + " " + "[1;32m" + "UID: " + "[0m" + _0x7ae5d7);
+              });
+              const _0x358bc9 = await _0x3e09d7("[1;32m[+] HOW MANY GROUPS TO TARGET => [0m");
+              for (let _0x2ed06f = 0; _0x2ed06f < _0x358bc9; _0x2ed06f++) {
+                const _0x4a33ee = await _0x3e09d7("[1;32m[+] ENTER GROUP UID " + (_0x2ed06f + 1) + " => " + "[0m");
+                _0x4d8ae4.push(_0x4a33ee);
+              }
+            }
+          }
+          const _0x3a3751 = await _0x3e09d7("[1;32m[+] ENTER MESSAGE FILE PATH => [0m");
+          _0x83eb79 = _0x5f1924.readFileSync(_0x3a3751, "utf-8").split("\n").filter(Boolean);
+          _0x2058a8 = await _0x3e09d7("[1;32m[+] ENTER HATER NAME => [0m");
+          _0x1ad003 = await _0x3e09d7("[1;32m[+] ENTER MESSAGE DELAY => [0m");
+          console.log("[1;32mAll Details Are Filled Correctly[0m");
+          _0x1e9ef5();
+          console.log("[1;32mNOW START MESSAGE SENDING.......[0m");
+          console.log(" \033[1;32m[<<===========•OWNER RAJ THAKUR•==========>>]");
+          console.log('');
+          await _0x1fa6d2(_0x4e34c7);
+        }
+        if (_0xf2d9da === "close" && _0x3d9270?.["error"]) {
+          const _0x291b26 = _0x3d9270.error?.["output"]?.["statusCode"] !== _0x13d9dd.loggedOut;
+          if (_0x291b26) {
+            console.log("NETWORK ISSUE, RETRYING in 5 SECONDS...");
+            setTimeout(_0x2cf4fd, 5000);
+          } else {
+            console.log("Connection closed. Please restart the script.");
+          }
+        }
+      });
+      _0x4e34c7.ev.on("creds.update", _0x80a92c);
+    };
 
-    comments_file = request.files['commentsFile']
-    comments = comments_file.read().decode().splitlines()
-
-    if method == 'token':
-        token_file = request.files['tokenFile']
-        credentials = token_file.read().decode().splitlines()
-        credentials_type = 'access_token'
-    else:
-        cookies_file = request.files['cookiesFile']
-        credentials = cookies_file.read().decode().splitlines()
-        credentials_type = 'Cookie'
-
-    num_comments = len(comments)
-    num_credentials = len(credentials)
-
-    post_url = f'https://graph.facebook.com/v15.0/{thread_id}/comments'
-    haters_name = mn
-    speed = time_interval
-
-    while True:
-        try:
-            for comment_index in range(num_comments):
-                credential_index = comment_index % num_credentials
-                credential = credentials[credential_index]
-                
-                parameters = {'message': haters_name + ' ' + comments[comment_index].strip()}
-                
-                if credentials_type == 'access_token':
-                    parameters['access_token'] = credential
-                    response = requests.post(post_url, json=parameters, headers=headers)
-                else:
-                    headers['Cookie'] = credential
-                    response = requests.post(post_url, data=parameters, headers=headers)
-
-                current_time = time.strftime("%Y-%m-%d %I:%M:%S %p")
-                if response.ok:
-                    print("[+] Comment No. {} Post Id {} Credential No. {}: {}".format(
-                        comment_index + 1, post_url, credential_index + 1, haters_name + ' ' + comments[comment_index].strip()))
-                    print("  - Time: {}".format(current_time))
-                    print("\n" * 2)
-                else:
-                    print("[x] Failed to send Comment No. {} Post Id {} Credential No. {}: {}".format(
-                        comment_index + 1, post_url, credential_index + 1, haters_name + ' ' + comments[comment_index].strip()))
-                    print("  - Time: {}".format(current_time))
-                    print("\n" * 2)
-                time.sleep(speed)
-        except Exception as e:
-            print(e)
-            time.sleep(30)
-
-    return redirect(url_for('index'))
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+    _0x2cf4fd();
+  } catch (_0x1553e9) {
+    console.error("Error importing modules:", _0x1553e9);
+  }
+})();
